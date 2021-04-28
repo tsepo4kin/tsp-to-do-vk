@@ -17,22 +17,35 @@
         ></v-text-field>
       </v-col>
     </v-row>
+    <v-row v-for="(node, i) in todoList" :key="i" justify="center" outlined>
+      <v-col cols="7">
+        {{ node }}
+        <daily-to-do-node></daily-to-do-node>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script>
+import DailyToDoNode from "./DailyToDoNode.vue";
+
 export default {
+  components: {
+    DailyToDoNode,
+  },
+
   name: "DailyTodoList",
 
   data: () => ({
     todo: null,
+    todoList: [],
   }),
   methods: {
     addTodo() {
       if (!this.todo || this.todo.trim() === "") {
         return;
       }
-      console.log(1);
+      this.todoList.push(this.todo);
     },
   },
 };
