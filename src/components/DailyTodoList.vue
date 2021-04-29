@@ -17,10 +17,23 @@
         ></v-text-field>
       </v-col>
     </v-row>
-    <v-row v-for="(node, i) in todoList" :key="i" justify="center" outlined>
+    <v-row justify="center">
       <v-col cols="7">
-        {{ node }}
-        <daily-to-do-node></daily-to-do-node>
+        <v-list two-line>
+          <v-list-item-group active-class="pink--text" multiple>
+            <daily-to-do-node
+              v-for="(item, index) in todoList"
+              :key="index"
+              :item="item"
+              :index="index"
+            ></daily-to-do-node>
+
+            <!-- <v-divider
+              v-if="index < items.length - 1"
+              :key="index"
+            ></v-divider>     -->
+          </v-list-item-group>
+        </v-list>
       </v-col>
     </v-row>
   </v-container>
