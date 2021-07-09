@@ -3,21 +3,21 @@
     <AppHeader />
 
     <v-main>
-      <DailyTodoList />
+      <todos-list />
     </v-main>
   </v-app>
 </template>
 
 <script>
 import AppHeader from "./components/AppHeader";
-import DailyTodoList from "./components/DailyTodoList";
+import TodosList from "./components/TodosList.vue";
 
 export default {
   name: "App",
 
   components: {
-    DailyTodoList,
     AppHeader,
+    TodosList,
   },
 
   data: () => ({
