@@ -7,7 +7,7 @@
       style="width: 390px"
       :class="{ 'text-decoration-line-through': isComplete }"
       class="title"
-      >title</span
+      >{{ title }}</span
     >
 
     <v-btn
@@ -26,6 +26,11 @@ export default {
   data: () => ({
     isComplete: false,
   }),
+  props: {
+    title: {
+      require: true,
+    },
+  },
 };
 </script>
 

@@ -1,11 +1,24 @@
 <template>
   <v-card width="500" class="mt-5 mx-auto">
-    <v-card-title :class="color">
-      {{ listName }}
-      <v-text-field> </v-text-field>
+    <v-card-title :class="color" class="d-block">
+      <p>{{ listName }}</p>
+      <v-text-field
+        autocomplete="off"
+        label="todo title"
+        solo
+        clearable
+        dense
+        background-color="#fff"
+        color="#000"
+        hide-details="true"
+        v-model="todoTitle"
+        append-outer-icon="mdi-plus"
+        @click:append-outer="addTodo"
+      >
+      </v-text-field>
     </v-card-title>
     <v-card-text>
-      <todo-item v-for="(k, i) in 10" :key="i" />
+      <todo-item v-for="(todo, i) in todos" :key="i" :title="todo" />
     </v-card-text>
   </v-card>
 </template>
@@ -22,6 +35,16 @@ export default {
     },
     color: {
       require: true,
+    },
+  },
+  data: () => ({
+    todoTitle: null,
+    todos: [],
+  }),
+  methods: {
+    addTodo() {
+      this.todos.push(this.todoTitle);
+      this.todoTitle = null;
     },
   },
 };
