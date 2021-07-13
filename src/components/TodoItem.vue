@@ -11,12 +11,21 @@
     >
 
     <v-btn
+      icon
       @click="isComplete = !isComplete"
       x-small
       class="green accent-3 align-self-center"
-      >v</v-btn
     >
-    <v-btn x-small class="red accent-2 ml-1 align-self-center">x</v-btn>
+      <v-icon>mdi-check</v-icon>
+    </v-btn>
+    <v-btn
+      icon
+      @click="deleteTask"
+      x-small
+      class="red accent-2 ml-1 align-self-center"
+    >
+      <v-icon>mdi-close</v-icon>
+    </v-btn>
     <hr style="width: 100%" />
   </div>
 </template>
@@ -29,6 +38,11 @@ export default {
   props: {
     title: {
       require: true,
+    },
+  },
+  methods: {
+    deleteTask() {
+      this.$emit("deleteTask", this.title);
     },
   },
 };

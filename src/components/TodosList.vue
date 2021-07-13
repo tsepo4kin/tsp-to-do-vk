@@ -18,7 +18,12 @@
       </v-text-field>
     </v-card-title>
     <v-card-text>
-      <todo-item v-for="(todo, i) in todos" :key="i" :title="todo" />
+      <todo-item
+        @deleteTask="deleteFromTodos"
+        v-for="(todo, i) in todos"
+        :key="i"
+        :title="todo"
+      />
     </v-card-text>
   </v-card>
 </template>
@@ -45,6 +50,9 @@ export default {
     addTodo() {
       this.todos.push(this.todoTitle);
       this.todoTitle = null;
+    },
+    deleteFromTodos(title) {
+      this.todos = this.todos.filter((e) => e != title);
     },
   },
 };
