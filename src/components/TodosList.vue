@@ -20,9 +20,10 @@
     <v-card-text>
       <todo-item
         @deleteTask="deleteFromTodos"
+        @toggleComplete="toggleComplete"
         v-for="(todo, i) in todos"
         :key="i"
-        :title="todo"
+        :todo="todo"
       />
     </v-card-text>
   </v-card>
@@ -48,11 +49,19 @@ export default {
   }),
   methods: {
     addTodo() {
-      this.todos.push(this.todoTitle);
+      this.todos.push({ title: this.todoTitle, complete: false });
       this.todoTitle = null;
     },
     deleteFromTodos(title) {
-      this.todos = this.todos.filter((e) => e != title);
+      this.todos = this.todos.filter((e) => e.title != title);
+    },
+    toggleComplete(title) {
+      this.todos = this.todos.map((e) => {
+        if (e.title == title) {
+          e.complete = !e.complete;
+        }
+        return e;
+      });
     },
   },
 };

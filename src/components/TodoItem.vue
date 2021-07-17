@@ -1,18 +1,18 @@
 <template>
   <div
     class="d-flex flex-wrap"
-    :class="{ green: isComplete, 'lighten-3': isComplete }"
+    :class="{ green: todo.complete, 'lighten-3': todo.complete }"
   >
     <span
       style="width: 390px"
-      :class="{ 'text-decoration-line-through': isComplete }"
+      :class="{ 'text-decoration-line-through': todo.complete }"
       class="title"
-      >{{ title }}</span
+      >{{ todo.title }}</span
     >
 
     <v-btn
       icon
-      @click="isComplete = !isComplete"
+      @click="toggleComplete"
       x-small
       class="green accent-3 align-self-center"
     >
@@ -32,17 +32,17 @@
 
 <script>
 export default {
-  data: () => ({
-    isComplete: false,
-  }),
   props: {
-    title: {
+    todo: {
       require: true,
     },
   },
   methods: {
     deleteTask() {
-      this.$emit("deleteTask", this.title);
+      this.$emit("deleteTask", this.todo.title);
+    },
+    toggleComplete() {
+      this.$emit("toggleComplete", this.todo.title);
     },
   },
 };
