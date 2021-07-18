@@ -1,14 +1,18 @@
 <template>
   <div
-    class="d-flex flex-wrap"
+    class="d-flex flex-wrap mt-2"
     :class="{ green: todo.complete, 'lighten-3': todo.complete }"
+    @dblclick="disabledField = false"
   >
-    <span
-      style="width: 390px"
+    <v-text-field
+      hide-details="true"
+      style="width: 420px; font-size: 18px; font-weight: bold; padding: 0"
       :class="{ 'text-decoration-line-through': todo.complete }"
-      class="title"
-      >{{ todo.title }}</span
+      :value="todo.title"
+      :disabled="disabledField"
+      @blur="editTodo"
     >
+    </v-text-field>
 
     <v-btn
       icon
@@ -37,12 +41,20 @@ export default {
       require: true,
     },
   },
+  data: () => ({
+    disabledField: true,
+    newTodoTitle: null,
+  }),
   methods: {
     deleteTask() {
       this.$emit("deleteTask", this.todo.title);
     },
     toggleComplete() {
       this.$emit("toggleComplete", this.todo.title);
+    },
+    editTodo() {
+      // this.$emit('editTodo', this.newTodoTitle)
+      console.log(1);
     },
   },
 };

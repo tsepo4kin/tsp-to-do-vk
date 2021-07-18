@@ -11,7 +11,8 @@
           :color="todoList.color"
         />
         <v-btn
-          class="mt-5 mx-auto green lighten-3"
+          class="px-16 mt-5 mx-auto green lighten-3"
+          width="500"
           @click="deleteAllCompleteTasks"
           >delete all complete</v-btn
         >
@@ -21,7 +22,7 @@
 </template>
 
 <script>
-// прикрутить локал сторедж
+// допилить редактирование
 // deleteAllCompleteTasks допилить
 import AppHeader from "./components/AppHeader";
 import TodosList from "./components/TodosList.vue";

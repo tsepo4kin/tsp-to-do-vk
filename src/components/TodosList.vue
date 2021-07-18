@@ -47,13 +47,21 @@ export default {
     todoTitle: null,
     todos: [],
   }),
+  created() {
+    JSON.parse(localStorage.getItem(this.listName))
+      ? (this.todos = JSON.parse(localStorage.getItem(this.listName)))
+      : (this.todos = []);
+  },
   methods: {
     addTodo() {
+      console.log(this.todos);
       this.todos.push({ title: this.todoTitle, complete: false });
       this.todoTitle = null;
+      localStorage.setItem(this.listName, JSON.stringify(this.todos));
     },
     deleteFromTodos(title) {
       this.todos = this.todos.filter((e) => e.title != title);
+      localStorage.setItem(this.listName, JSON.stringify(this.todos));
     },
     toggleComplete(title) {
       this.todos = this.todos.map((e) => {
@@ -62,6 +70,7 @@ export default {
         }
         return e;
       });
+      localStorage.setItem(this.listName, JSON.stringify(this.todos));
     },
   },
 };
