@@ -2,15 +2,16 @@
   <div
     class="d-flex flex-wrap mt-2"
     :class="{ green: todo.complete, 'lighten-3': todo.complete }"
-    @dblclick="disabledField = false"
+    @dblclick="editTodo"
   >
     <v-text-field
+      ref="todoInput"
       hide-details="true"
       style="width: 420px; font-size: 18px; font-weight: bold; padding: 0"
       :class="{ 'text-decoration-line-through': todo.complete }"
       :value="todo.title"
-      :disabled="disabledField"
-      @blur="editTodo"
+      :readonly="disabledField"
+      @blur="saveNewTodoTitle"
     >
     </v-text-field>
 
@@ -52,9 +53,15 @@ export default {
     toggleComplete() {
       this.$emit("toggleComplete", this.todo.title);
     },
-    editTodo() {
-      // this.$emit('editTodo', this.newTodoTitle)
+    saveNewTodoTitle() {
+      // this.$emit('saveNewTodoTitle', this.newTodoTitle)
+      this.disabledField = true;
       console.log(1);
+    },
+    editTodo() {
+      this.disabledField = false;
+      // // setTimeout(this.$refs.todoInput.$el.focus(), 1000)
+      this.$refs.todoInput.focus();
     },
   },
 };

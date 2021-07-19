@@ -1,5 +1,5 @@
 <template>
-  <v-card width="500" class="mt-5 mx-auto">
+  <v-card width="500" class="mt-5 mx-auto align-self-center">
     <v-card-title :class="color" class="d-block">
       <p>{{ listName }}</p>
       <v-text-field
