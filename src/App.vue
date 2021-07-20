@@ -10,20 +10,19 @@
           :listName="todoList.listName"
           :color="todoList.color"
         />
-        <v-btn
+        <!-- <v-btn
           class="px-16 mt-5 mx-auto green lighten-3"
           width="500"
           @click="deleteAllCompleteTasks"
           >delete all complete</v-btn
-        >
+        > -->
       </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
-// допилить редактирование
-// deleteAllCompleteTasks допилить
+// deleteAllCompleteTasks допилить потенциальный апдейт
 import AppHeader from "./components/AppHeader";
 import TodosList from "./components/TodosList.vue";
 
@@ -43,8 +42,5 @@ export default {
       { listName: "Postponed indefinitely", color: "grey" },
     ],
   }),
-  methods: {
-    deleteAllCompleteTasks() {},
-  },
 };
 </script>

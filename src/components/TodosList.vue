@@ -21,6 +21,7 @@
       <todo-item
         @deleteTask="deleteFromTodos"
         @toggleComplete="toggleComplete"
+        @saveNewTodoTitle="editTodo"
         v-for="(todo, i) in todos"
         :key="i"
         :todo="todo"
@@ -70,6 +71,15 @@ export default {
       this.todos = this.todos.map((e) => {
         if (e.title == title) {
           e.complete = !e.complete;
+        }
+        return e;
+      });
+      localStorage.setItem(this.listName, JSON.stringify(this.todos));
+    },
+    editTodo(todoData) {
+      this.todos = this.todos.map((e) => {
+        if (todoData.oldTitle == e.title) {
+          e.title = todoData.newTitle;
         }
         return e;
       });

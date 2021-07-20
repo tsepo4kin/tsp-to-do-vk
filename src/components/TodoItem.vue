@@ -15,6 +15,7 @@
       :value="todo.title"
       :disabled="disabledField"
       @blur="saveNewTodoTitle"
+      @input="onInput"
     >
     </v-text-field>
 
@@ -57,7 +58,10 @@ export default {
       this.$emit("toggleComplete", this.todo.title);
     },
     saveNewTodoTitle() {
-      // this.$emit('saveNewTodoTitle', this.newTodoTitle)
+      this.$emit("saveNewTodoTitle", {
+        newTitle: this.newTodoTitle,
+        oldTitle: this.todo.title,
+      });
       this.disabledField = true;
     },
     editTodo() {
@@ -69,6 +73,9 @@ export default {
       setTimeout(() => {
         window.getSelection().removeAllRanges();
       }, 0);
+    },
+    onInput(e) {
+      this.newTodoTitle = e;
     },
   },
 };
