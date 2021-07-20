@@ -54,8 +54,11 @@ export default {
   },
   methods: {
     addTodo() {
-      console.log(this.todos);
-      this.todos.push({ title: this.todoTitle, complete: false });
+      this.todos.push({
+        title: this.todoTitle,
+        complete: false,
+        id: this.listName + this.todos.length,
+      });
       this.todoTitle = null;
       localStorage.setItem(this.listName, JSON.stringify(this.todos));
     },

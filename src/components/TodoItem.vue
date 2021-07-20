@@ -5,12 +5,15 @@
     @dblclick="editTodo"
   >
     <v-text-field
-      ref="todoInput"
+      solo
+      flat
+      color="black"
+      :ref="todo.id"
       hide-details="true"
       style="width: 420px; font-size: 18px; font-weight: bold; padding: 0"
       :class="{ 'text-decoration-line-through': todo.complete }"
       :value="todo.title"
-      :readonly="disabledField"
+      :disabled="disabledField"
       @blur="saveNewTodoTitle"
     >
     </v-text-field>
@@ -56,12 +59,16 @@ export default {
     saveNewTodoTitle() {
       // this.$emit('saveNewTodoTitle', this.newTodoTitle)
       this.disabledField = true;
-      console.log(1);
     },
     editTodo() {
       this.disabledField = false;
-      // // setTimeout(this.$refs.todoInput.$el.focus(), 1000)
-      this.$refs.todoInput.focus();
+      let refName = this.todo.id;
+      setTimeout(() => {
+        this.$refs[refName].focus();
+      }, 0);
+      setTimeout(() => {
+        window.getSelection().removeAllRanges();
+      }, 0);
     },
   },
 };
