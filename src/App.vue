@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <AppHeader />
+    <!-- <AppHeader /> -->
 
     <v-main>
       <v-container class="d-flex flex-wrap">
@@ -23,14 +23,14 @@
 
 <script>
 // deleteAllCompleteTasks допилить потенциальный апдейт
-import AppHeader from "./components/AppHeader";
+// import AppHeader from "./components/AppHeader";
 import TodosList from "./components/TodosList.vue";
 
 export default {
   name: "App",
 
   components: {
-    AppHeader,
+    // AppHeader,
     TodosList,
   },
 
