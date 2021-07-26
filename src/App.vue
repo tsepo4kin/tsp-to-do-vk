@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <!-- <AppHeader /> -->
+    <AppHeader @addTodoList="addNewTodoList" />
 
     <v-main>
       <v-container class="d-flex flex-wrap">
@@ -23,14 +23,14 @@
 
 <script>
 // deleteAllCompleteTasks допилить потенциальный апдейт
-// import AppHeader from "./components/AppHeader";
+import AppHeader from "./components/AppHeader";
 import TodosList from "./components/TodosList.vue";
 
 export default {
   name: "App",
 
   components: {
-    // AppHeader,
+    AppHeader,
     TodosList,
   },
 
@@ -42,5 +42,11 @@ export default {
       { listName: "Postponed indefinitely", color: "grey" },
     ],
   }),
+  methods: {
+    addNewTodoList(listData) {
+      this.todosLists.push(listData);
+      console.log(this.todosLists);
+    },
+  },
 };
 </script>
