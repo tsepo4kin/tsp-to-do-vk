@@ -5,6 +5,7 @@
     <v-main>
       <v-container class="d-flex flex-wrap">
         <todos-list
+          @deleteTodoList="deleteTodoList"
           v-for="(todoList, i) of todosLists"
           :key="i"
           :listName="todoList.listName"
@@ -23,6 +24,7 @@
 
 <script>
 // deleteAllCompleteTasks допилить потенциальный апдейт
+// Дизайн фиксы
 import AppHeader from "./components/AppHeader";
 import TodosList from "./components/TodosList.vue";
 
@@ -32,6 +34,10 @@ export default {
   components: {
     AppHeader,
     TodosList,
+  },
+
+  created() {
+    this.todosLists = JSON.parse(localStorage.getItem("todoLists"));
   },
 
   data: () => ({
@@ -45,7 +51,11 @@ export default {
   methods: {
     addNewTodoList(listData) {
       this.todosLists.push(listData);
-      console.log(this.todosLists);
+      localStorage.setItem("todoLists", JSON.stringify(this.todosLists));
+    },
+    deleteTodoList(listName) {
+      this.todosLists = this.todosLists.filter((e) => e.listName != listName);
+      localStorage.setItem("todoLists", JSON.stringify(this.todosLists));
     },
   },
 };

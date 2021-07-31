@@ -1,7 +1,17 @@
 <template>
   <v-card width="500" class="mt-5 mx-auto align-self-center">
     <v-card-title :class="color" class="d-block">
-      <p>{{ listName }}</p>
+      <div class="d-flex justify-space-between">
+        <p>{{ listName }}</p>
+        <v-btn
+          @click="deleteTodoList"
+          class="icon"
+          elevation="0"
+          :class="color"
+        >
+          <v-icon font-size="25">mdi-close</v-icon>
+        </v-btn>
+      </div>
       <v-text-field
         autocomplete="off"
         label="todo title"
@@ -84,6 +94,9 @@ export default {
         return e;
       });
       localStorage.setItem(this.listName, JSON.stringify(this.todos));
+    },
+    deleteTodoList() {
+      this.$emit("deleteTodoList", this.listName);
     },
   },
 };
