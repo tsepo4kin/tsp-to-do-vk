@@ -37,7 +37,9 @@ export default {
   },
 
   created() {
-    this.todosLists = JSON.parse(localStorage.getItem("todoLists"));
+    if (JSON.parse(localStorage.getItem("todoLists"))) {
+      this.todosLists = JSON.parse(localStorage.getItem("todoLists"));
+    }
   },
 
   data: () => ({

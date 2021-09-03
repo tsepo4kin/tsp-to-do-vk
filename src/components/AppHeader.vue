@@ -10,7 +10,8 @@
       solo
       flat
       hide-details="true"
-      append-outer-icon="mdi-plus"
+      color="white"
+      append-outer-icon="mdi-check"
       v-model="listName"
       @click:append-outer="addTodoList"
     ></v-text-field>
