@@ -7,13 +7,13 @@
     <v-text-field
       solo
       flat
-      color="black"
+      color="#000e24"
       :ref="todo.id"
       hide-details="true"
       style="width: 420px; font-size: 18px; font-weight: bold; padding: 0"
       :class="{ 'text-decoration-line-through': todo.complete }"
       :value="todo.title"
-      :disabled="disabledField"
+      :readonly="disabledField"
       @blur="saveNewTodoTitle"
       @input="onInput"
     >
@@ -45,6 +45,9 @@ export default {
     todo: {
       require: true,
     },
+  },
+  mounted() {
+    this.newTodoTitle = this.todo.title;
   },
   data: () => ({
     disabledField: true,
@@ -81,4 +84,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.v-text-field input[readonly="readonly"] {
+  color: #00378f;
+}
+</style>
