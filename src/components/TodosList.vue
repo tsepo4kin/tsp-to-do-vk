@@ -1,13 +1,13 @@
 <template>
   <v-card width="500" class="mt-5 mx-auto align-self-center">
-    <v-card-title :class="color" class="d-block">
+    <v-card-title :style="{ 'background-color': color }" class="d-block">
       <div class="d-flex justify-space-between">
         <p>{{ listName }}</p>
         <v-btn
           @click="deleteTodoList"
           class="icon"
           elevation="0"
-          :class="color"
+          :style="{ 'background-color': color }"
         >
           <v-icon font-size="25">mdi-close</v-icon>
         </v-btn>

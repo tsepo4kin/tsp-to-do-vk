@@ -15,20 +15,53 @@
       v-model="listName"
       @click:append-outer="addTodoList"
     ></v-text-field>
+    <span
+      @click="toggleColorPicker"
+      class="ring"
+      :style="{ 'background-color': color }"
+    ></span>
+    <v-color-picker
+      v-model="color"
+      class="colorPicker"
+      v-if="colorPicker"
+    ></v-color-picker>
   </v-app-bar>
 </template>
 
 <script>
 export default {
+  mounted() {
+    console.log(this.color);
+  },
   data: () => ({
     listName: null,
+    color: "#ffffff",
+    colorPicker: false,
   }),
   methods: {
     addTodoList() {
-      this.$emit("addTodoList", { listName: this.listName, color: "purple" });
+      this.$emit("addTodoList", { listName: this.listName, color: this.color });
+    },
+    toggleColorPicker() {
+      this.colorPicker = !this.colorPicker;
+      console.log(this.color);
     },
   },
 };
 </script>
 
-<style></style>
+<style>
+.ring {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  display: inline-block;
+  border: 1px solid black;
+}
+
+.colorPicker {
+  position: absolute;
+  top: 45px;
+  right: 20px;
+}
+</style>
