@@ -30,9 +30,6 @@
 
 <script>
 export default {
-  mounted() {
-    console.log(this.color);
-  },
   data: () => ({
     listName: null,
     color: "#ffffff",
@@ -44,7 +41,6 @@ export default {
     },
     toggleColorPicker() {
       this.colorPicker = !this.colorPicker;
-      console.log(this.color);
     },
   },
 };
